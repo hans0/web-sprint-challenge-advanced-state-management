@@ -12,6 +12,10 @@ import "./App.css";
 
 
 class App extends Component {
+  componentDidMount() {
+    const { fetchSmurfs } = this.props;
+    fetchSmurfs();
+  }
 
   render() {
     return (
@@ -19,7 +23,7 @@ class App extends Component {
         <Header />
 
         <main>
-          <SmurfList isLoading={ isLoading } fetchSmurfs={ fetchSmurfs }/>
+          <SmurfList fetchSmurfs={ fetchSmurfs }/>
           <AddForm/>
         </main>
       </div>

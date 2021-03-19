@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Smurf from './Smurf';
+import reducer, { initialState } from '../reducers';
 // import { fetchSmurfs } from '../actions';
 
 const SmurfList = (props) => {
 
   // console.log(props)
+  
 
   useEffect(() => {
     props.fetchSmurfs();
@@ -29,8 +31,9 @@ const SmurfList = (props) => {
     <Smurf smurf={testSmurf}/>
   </div>);
 }
-
-export default connect({ props.smurfs, isLoading })(SmurfList);
+export default connect()(SmurfList);
+// export default connect({ smurfs, isLoading })(SmurfList);
+// export default connect({ smurfs, isLoading })(SmurfList);
 
 //Task List:
 //1. Connect the smurfs and loading state values to the SmurfList component.
