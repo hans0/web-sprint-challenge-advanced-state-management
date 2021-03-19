@@ -12,12 +12,6 @@ import "./App.css";
 
 
 class App extends Component {
-  // constructor(props) {
-    // super(props)
-  //   // useEffect(()=> {
-  //     fetchSmurfs();
-  //   // }, []);
-  // }
 
   render() {
     return (
@@ -25,7 +19,7 @@ class App extends Component {
         <Header />
 
         <main>
-          <SmurfList/>
+          <SmurfList isLoading={ isLoading } fetchSmurfs={ fetchSmurfs }/>
           <AddForm/>
         </main>
       </div>
@@ -33,14 +27,14 @@ class App extends Component {
   }
 }
 
-//1. Connect the fetchSmurfs actions to the App component.
-//2. Call the fetchSmurfs action when the component first loads.
-export default connect((state) => {
+const mapStateToProps = (state) => {
   return {
     smurfs: state.smurfs,
     isLoading: state.isLoading,
     errorMessage: state.errorMessage
   }
-}, {})(App);
-
+}
 //Task List:
+//1. Connect the fetchSmurfs actions to the App component.
+//2. Call the fetchSmurfs action when the component first loads.
+export default connect(mapStateToProps, { fetchSmurfs })(App);
