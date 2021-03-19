@@ -1,13 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
 import Header from './components/Header';
 
+import { fetchSmurfs } from './actions';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
+
 class App extends Component {
+  // constructor(props) {
+  //   super(props)
+  //   // useEffect(()=> {
+  //     fetchSmurfs();
+  //   // }, []);
+
+  // }
+
+  componentDidMount() {
+    fetchSmurfs();
+  }
   render() {
     return (
       <div className="App">
