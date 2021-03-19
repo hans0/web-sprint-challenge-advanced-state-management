@@ -20,7 +20,7 @@ export const initialState = {
 
 
 //2. Add in the arguments needed to complete a standard reducer function.
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
   switch(action.type){
     // 3. Add in a reducer case to accomidate the start of a smurf fetch.
 

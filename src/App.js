@@ -1,4 +1,5 @@
 import React, { Component, useEffect } from "react";
+import { connect } from 'react-redux';
 
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
@@ -12,16 +13,12 @@ import "./App.css";
 
 class App extends Component {
   // constructor(props) {
-  //   super(props)
+    // super(props)
   //   // useEffect(()=> {
   //     fetchSmurfs();
   //   // }, []);
-
   // }
 
-  componentDidMount() {
-    fetchSmurfs();
-  }
   render() {
     return (
       <div className="App">
@@ -36,8 +33,14 @@ class App extends Component {
   }
 }
 
-export default App;
-
-//Task List:
 //1. Connect the fetchSmurfs actions to the App component.
 //2. Call the fetchSmurfs action when the component first loads.
+export default connect((state) => {
+  return {
+    smurfs: state.smurfs,
+    isLoading: state.isLoading,
+    errorMessage: state.errorMessage
+  }
+}, {})(App);
+
+//Task List:
