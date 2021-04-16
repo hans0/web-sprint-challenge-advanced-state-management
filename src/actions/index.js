@@ -10,7 +10,6 @@ export const fetchSmurfs = () => {
   console.log('fetchSmurfs called')
   return dispatch => {
     dispatch({ type: FETCH_SMURFS_LOADING});
-
     axios
       .get(`http://localhost:3333/smurfs`)
       .then((res) => {
@@ -19,6 +18,7 @@ export const fetchSmurfs = () => {
       })
       .catch((err) => {
         console.log(err);
+        dispatch({type: FETCH_SMURFS_FAIL, payload: err})
       })
   }
 }
@@ -26,7 +26,19 @@ export const fetchSmurfs = () => {
 export const ADD_SMURF = "ADD_SMURF";
 
 export const addSmurf = (smurf) => {
-  return ({type: ADD_SMURF, payload: smurf});
+  return dispatch => {
+    axios
+      .post(`http://localhost:3333/smurfs`, smurf)
+      .then((res) => {
+        console.log(res);
+        dispatch({type: ADD_SMURF, payload: smurf});
+        dispatch({type: FETCH_SMURFS_SUCCESS, payload: res.data})
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({type: FETCH_SMURFS_FAIL, payload: err})
+      });
+  }
 }
 
 //3. Add a standard action that allows us to set the value of the error message slice of state.

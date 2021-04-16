@@ -8,7 +8,6 @@ import { fetchSmurfs } from '../actions';
 const SmurfList = (props) => {
   const { smurfs, isLoading } = props;
 
-  // const isLoading = false;
   const testSmurf = {
       id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
       name:'Poppa Smurf',
@@ -26,11 +25,8 @@ const SmurfList = (props) => {
       {/* <Smurf smurf={testSmurf}/> */}
       {console.log('SmurfList:', smurfs)}
       {smurfs.map((smurf) => {
-        return(
-          <Smurf smurf={smurf} />
-        )
+        return(<Smurf smurf={smurf} />);
       })}
-      {/* <Smurf /> */}
     </div>
   );
 }
@@ -39,7 +35,7 @@ const mapStateToProps = state => {
   return {
     smurfs: state.smurfs,
     isLoading: state.isLoading,
-    error: state.error
+    errorMessage: state.errorMessage
   };
 };
 

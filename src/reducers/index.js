@@ -13,7 +13,7 @@ import {
 export const initialState = {
   smurfs: [], 
   isLoading: false,
-  error: ''
+  errorMessage: ''
 }
 
 export const reducer = (state = initialState, action) => {
@@ -27,12 +27,13 @@ export const reducer = (state = initialState, action) => {
       return({
         ...state,
         smurfs: action.payload,
-        isLoading: false
+        isLoading: false,
+        errorMessage: ''
       });
     case(FETCH_SMURFS_FAIL):
       return({
         ...state,
-        error: action.payload,
+        errorMessage: action.payload,
         isLoading: false
       })
     case(ADD_SMURF):
@@ -42,8 +43,12 @@ export const reducer = (state = initialState, action) => {
           ...state.smurfs,
           action.payload
         ]
-
       });
+    case(SET_ERROR):
+      return ({
+        ...state,
+        errorMessage: action.payload
+      })
     default:
       return state;
   }
